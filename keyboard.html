@@ -2,26 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="description" content="Play with an electronic piano keyboard made with Javascript. Dynamically generated audio creates a realistic playing experience."/>
-  <meta name="author" content="Joe Liang" />
-  
-    <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:description" content="Play with an electronic piano keyboard made with Javascript. Dynamically generated audio creates a realistic playing experience." />
-  <meta name="twitter:title" content="Javascript Piano Keyboard" />
-  <meta name="twitter:image" content="https://i1.wp.com/1000mileworld.com/wp-content/uploads/2019/09/twitterCard-piano.jpg" />
+  <meta name="description" content=""/>
+  <meta name="author" content="Martin Červenka & Joe Liang" />
   
   <title>Javascript Piano Keyboard</title>
   
- <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-140400287-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-140400287-1');
-</script>
-
   <style>
 
   	body { font-family: Georgia; text-align: center;}
@@ -56,34 +41,22 @@
 
 <script src="audiosynth.js"></script>
 <script src="playKeyboard.js"></script>
+<script src="vexflow-debug.js"></script>
+<script src="renderNote.js"></script>
 
 </head>
 
 <body>
 
-<script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
-<script type="text/javascript">window.dojoRequire(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us20.list-manage.com","uuid":"dbcd725d81fa004cc7aa6230a","lid":"673d85a600","uniqueMethods":true}) })</script>
-
-<a href="https://1000mileworld.com/"><img class="banner" src="https://1000mileworld.com/wp-content/uploads/2019/09/100020Mile20world.jpg"></a>
-
 <h1 class="title">Javascript Piano Keyboard</h1>
-<h2><a href="https://1000mileworld.com/about/#author">Joe Liang</a></h2>
 
-<a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Try out this electronic piano keyboard made in Javascript!" data-show-count="false">Share</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<a href="https://twitter.com/1000mileworld?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @1000mileworld</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div id="boo"></div>
 
-<div ID="keyboard" class="keyboard-holder"></div> <!--calls js to create keyboard with id-->
+<script>renderNote()</script>
+
+<div ID="keyboard" class="keyboard-holder"></div>
 
 <script type="text/javascript">playKeyboard()</script>
-
-<div class="content">
-<p>I made this piano keyboard in Javascript based on the <a href="https://keithwhor.com/music/">dynamically generated synthetic keyboard</a> made by Keith William Horwood. I extended the number of keys available to 4 octaves, set new key bindings, and applied some stylistic changes. To keep things simple, I removed the option of switching to different instrument sounds and just kept piano.</p>
-
-<p>What makes this keyboard interesting is the fact that Javascript dynamically generates the appropriate sound when the user presses a key and the code does not load any external audio files.</p>
-</div>
-
-<br>
-<a href="https://1000mileworld.com/neve-blog/">Blog</a> | <a href="https://1000mileworld.com/portfolio/">List of Projects</a>
 
 </body>
 </html>

@@ -1,3 +1,8 @@
+// @ts-check
+
+const myNotes = ["C", "CIS", "D", "DIS", "E", "F", "G", "GIS", "A", "H", "c", "d", "e", "f", "g", "a", "h", "c1", "d1", "e1", "f1", "g1", "a1", "h1", "c2"];
+const cees = ["C", "c", "c1", "c2"];
+
 function playKeyboard(){
 
 	let pressColor = '#1BC0EA'; //color when key is pressed
@@ -214,6 +219,7 @@ function playKeyboard(){
 	var iKeys = 0;
 	var iWhite = 0;
 	var notes = __audioSynth._notes; //C, C#, D....A#, B
+	var myIndex = 0;
 
 	for(var i=-2;i<=1;i++) {
 		for(var n in notes) {
@@ -237,11 +243,23 @@ function playKeyboard(){
 
 				let s = getDispStr(n,i,reverseLookupText);
 
-				label.innerHTML = '<b class="keyLabel">' + s + '</b>' + '<br /><br />' + n.substr(0,1) +
-					'<span name="OCTAVE_LABEL" value="' + i + '">' + (__octave + parseInt(i)) + '</span>' + (n.substr(1,1)?n.substr(1,1):'');
+				if (n.substr(0,1) == "C" && n.length == 1) {
+				label.innerHTML = '<b class="keyLabel">' + s + '</b>' + '<br /><br />' + cees[myIndex]; //+
+				//	'<span name="OCTAVE_LABEL" value="' + i + '">' + (__octave + parseInt(i)) + '</span>' + (n.substr(1,1)?n.substr(1,1):'');
+				myIndex++;
+				}
 				thisKey.appendChild(label);
 				thisKey.setAttribute('ID', 'KEY_' + n + ',' + i);
-				thisKey.addEventListener(evtListener[0], (function(_temp) { return function() { fnPlayKeyboard({keyCode:_temp}); } })(reverseLookup[n + ',' + i]));
+				const keyCode = reverseLookup[n + ',' + i];
+				thisKey.addEventListener('mousedown', () => {
+  				fnPlayKeyboard({ keyCode });
+				});
+				thisKey.addEventListener('mousedown', () => {
+					var playedNote = n.toString() + (__octave + parseInt(i)).toString();
+					if ( playedNote == currentDisplayedNote) {
+						renderNote();
+					}
+				  });
 				visualKeyboard[n + ',' + i] = thisKey;
 				visualKeyboard.appendChild(thisKey);
 				
@@ -277,7 +295,12 @@ function playKeyboard(){
 			var arrPlayNote = keyboard[e.keyCode].split(',');
 			var note = arrPlayNote[0];
 			var octaveModifier = arrPlayNote[1]|0;
+
 			fnPlayNote(note, __octave + octaveModifier);
+			if ((note + (__octave + octaveModifier)) == currentDisplayedNote) {
+				document.getElementById('boo').innerHTML = null;
+				renderNote();	
+			}
 		} else {
 			return false;	
 		}
